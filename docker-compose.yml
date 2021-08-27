@@ -9,28 +9,28 @@ services:
     image: redis
     ports:
       - "6003:6379"
-  ohmyform:
-    build: .
-    environment:
-      CREATE_ADMIN: "TRUE"
-      MAILER_URI: smtp://mail:1025
-      DATABASE_DRIVER: postgres
-      DATABASE_URL: postgresql://root:root@db:5432/ohmyform
-      LOGIN_NOTE: "login with root:root!"
-      SECRET_KEY: 12345
-    links:
-      - db
-      - redis
-      - mail
-    ports:
-      - "5200:3000"
-    depends_on:
-      - db
-      - redis
-  mail:
-    image: mailhog/mailhog
-    ports:
-      - "5051:8025"
+  # ohmyform:
+  #   build: .
+  #   environment:
+  #     CREATE_ADMIN: "TRUE"
+  #     MAILER_URI: smtp://mail:1025
+  #     DATABASE_DRIVER: postgres
+  #     DATABASE_URL: postgresql://root:root@db:5432/ohmyform
+  #     LOGIN_NOTE: "login with root:root!"
+  #     SECRET_KEY: 12345
+  #   links:
+  #     - db
+  #     - redis
+  #     - mail
+  #   ports:
+  #     - "5200:3000"
+  #   depends_on:
+  #     - db
+  #     - redis
+  # mail:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - "5051:8025"
   db:
     image: postgres:10-alpine
     volumes:
