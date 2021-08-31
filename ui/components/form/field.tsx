@@ -79,7 +79,8 @@ export const Field: React.FC<Props> = ({
       <div
         style={{
           // flex: 1,
-          minWidth: '600px',
+          width: '700px',
+          maxWidth: '100%',
           display: 'flex',
           flexDirection: 'column',
           padding: 32,
@@ -102,7 +103,8 @@ export const Field: React.FC<Props> = ({
       </div>
       <div
         style={{
-          minWidth: '600px',
+          width: '700px',
+          maxWidth: '100%',
           padding: 32,
           marginBottom: '100px',
           display: 'flex',
