@@ -1,9 +1,10 @@
 .main {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .content {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +13,11 @@
     padding: 16px;
 
     @media (max-width: 600px) {
+      flex: 1;
+      max-height: calc(100% - 15em);
       display: block;
+      padding-top: 5em;
+      padding-bottom: 5em;
     }
   }
 }

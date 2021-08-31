@@ -36,9 +36,11 @@ export const FormPage: React.FC<Props> = ({ page, design, next, prev, className,
         style={{
           padding: 32,
           display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        {prev && <div />}
+        {/* {(page.buttons.length > 0 && prev) || (props.type === 'start' && <div />)} */}
         {page.buttons.length > 0 && (
           <Space>
             {page.buttons.map((button, key) => {
@@ -59,7 +61,7 @@ export const FormPage: React.FC<Props> = ({ page, design, next, prev, className,
           </Space>
         )}
 
-        <div style={{ flex: 1 }} />
+        {window.innerWidth < 600 && <div style={{ flex: 1 }} />}
 
         <StyledButton
           background={design.colors.button}

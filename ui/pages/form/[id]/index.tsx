@@ -91,7 +91,7 @@ const Index: NextPage<Props> = () => {
             />
           ) : undefined,
           ...data.form.fields
-            .map((field, i) => {
+            .map((field, i, array) => {
               if (field.type === 'hidden') {
                 return null
               }
@@ -101,6 +101,8 @@ const Index: NextPage<Props> = () => {
                   key={field.id}
                   field={field}
                   design={design}
+                  nextAction={i !== array.length - 1}
+                  prevAction={i !== 0}
                   save={async (values: { [key: string]: unknown }) => {
                     await submission.setField(field.id, values[field.id])
 

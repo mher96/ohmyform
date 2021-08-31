@@ -16,14 +16,24 @@ import { FieldTypeProps } from './types/type.props'
 interface Props {
   field: FormPublicFieldFragment
   design: FormPublicDesignFragment
-
+  nextAction?: boolean
+  prevAction?: boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   save: (data: any) => void
   next: () => void
   prev: () => void
 }
 
-export const Field: React.FC<Props> = ({ field, save, design, next, prev, ...props }) => {
+export const Field: React.FC<Props> = ({
+  field,
+  save,
+  design,
+  next,
+  prev,
+  nextAction = false,
+  prevAction = false,
+  ...props
+}) => {
   const [form] = useForm()
   const router = useRouter()
   const fromRef = useRef<FormInstance>()
@@ -55,23 +65,25 @@ export const Field: React.FC<Props> = ({ field, save, design, next, prev, ...pro
   return (
     <Form
       form={form}
-      // onFinish={finish}
-      onFinish={(data) => console.log(data)}
+      onFinish={finish}
       onFinishFailed={error}
       ref={fromRef}
       {...props}
       style={{
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <div
         style={{
-          flex: 1,
+          // flex: 1,
+          minWidth: '600px',
           display: 'flex',
           flexDirection: 'column',
           padding: 32,
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
         }}
       >
         <StyledH1 design={design} type={'question'}>
@@ -90,21 +102,23 @@ export const Field: React.FC<Props> = ({ field, save, design, next, prev, ...pro
       </div>
       <div
         style={{
+          minWidth: '600px',
           padding: 32,
+          marginBottom: '100px',
           display: 'flex',
         }}
       >
-        <StyledButton
-          background={design.colors.button}
-          color={design.colors.buttonText}
-          highlight={design.colors.buttonActive}
-          onClick={prev}
-        >
-          {'Previous'}
-        </StyledButton>
-
+        {prevAction && (
+          <StyledButton
+            background={design.colors.button}
+            color={design.colors.buttonText}
+            highlight={design.colors.buttonActive}
+            onClick={prev}
+          >
+            {'Previous'}
+          </StyledButton>
+        )}
         <div style={{ flex: 1 }} />
-
         <StyledButton
           background={design.colors.button}
           color={design.colors.buttonText}
@@ -112,7 +126,7 @@ export const Field: React.FC<Props> = ({ field, save, design, next, prev, ...pro
           size={'large'}
           onClick={form.submit}
         >
-          {'Next'}
+          {nextAction ? 'Next' : 'Submit'}
         </StyledButton>
       </div>
     </Form>
