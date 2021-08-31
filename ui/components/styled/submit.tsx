@@ -1,4 +1,5 @@
-import { Button, ButtonProps } from 'antd'
+import { Button } from 'antd'
+import { ButtonProps } from 'antd/lib/button/button'
 import React from 'react'
 import styled from 'styled-components'
 import { darken, lighten } from './color.change'
@@ -7,6 +8,7 @@ interface Props extends ButtonProps {
   background: string
   highlight: string
   color: string
+  keys?: string
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
@@ -14,6 +16,7 @@ const Styled = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 90px;
   font-weight: 700;
   font-size: 16px;
   border-radius: 4px;
@@ -31,6 +34,26 @@ const Styled = styled(Button)`
   }
 `
 
-export const StyledButton: React.FC<Props> = ({ children, ...props }) => {
-  return <Styled {...props}>{children}</Styled>
+export const Submit: React.FC<Props> = ({ keys = 'Enter', children, ...props }) => {
+  return (
+    <div style={{ position: 'relative' }}>
+      <Styled {...props}>{children}</Styled>
+      <div
+        style={{
+          minWidth: '150%',
+          position: 'absolute',
+          left: '100%',
+          top: 'calc(50% - .37em)',
+          alignItems: 'center',
+          fontSize: '.75em',
+          color: props.color,
+          lineHeight: '.75em',
+          fontFamily: 'sans-serif',
+          marginLeft: '.75em',
+        }}
+      >
+        press <strong>{keys}</strong>
+      </div>
+    </div>
+  )
 }

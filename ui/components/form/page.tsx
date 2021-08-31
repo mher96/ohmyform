@@ -5,6 +5,7 @@ import {
   FormPublicPageFragment,
 } from '../../graphql/fragment/form.public.fragment'
 import { StyledButton } from '../styled/button'
+import { Submit } from '../styled/submit'
 import { StyledH1 } from '../styled/h1'
 import { StyledMarkdown } from '../styled/markdown'
 import scss from './page.module.scss'
@@ -63,7 +64,7 @@ export const FormPage: React.FC<Props> = ({ page, design, next, prev, className,
 
         {window.innerWidth < 600 && <div style={{ flex: 1 }} />}
 
-        <StyledButton
+        <Submit
           background={design.colors.button}
           color={design.colors.buttonText}
           highlight={design.colors.buttonActive}
@@ -71,7 +72,7 @@ export const FormPage: React.FC<Props> = ({ page, design, next, prev, className,
           onClick={next}
         >
           {page.buttonText || 'Continue'}
-        </StyledButton>
+        </Submit>
       </div>
     </div>
   )

@@ -8,6 +8,11 @@ interface Props {
 }
 
 const Header = styled.h1`
+  position: relative;
+  line-height: 32px;
+  font-wight: unset;
+  font-family: sans-serif;
+  font-size: 24px;
   color: ${(props: Props) =>
     props.type === 'question' ? props.design.colors.question : props.design.colors.answer};
 `

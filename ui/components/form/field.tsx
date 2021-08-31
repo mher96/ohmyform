@@ -12,6 +12,9 @@ import { useRouter } from '../use.router'
 import { fieldTypes } from './types'
 import { TextType } from './types/text.type'
 import { FieldTypeProps } from './types/type.props'
+import { Submit } from '../styled/submit'
+import Arrow from '../arrow'
+import Checked from 'components/check'
 
 interface Props {
   field: FormPublicFieldFragment
@@ -78,7 +81,6 @@ export const Field: React.FC<Props> = ({
     >
       <div
         style={{
-          // flex: 1,
           width: '700px',
           maxWidth: '100%',
           display: 'flex',
@@ -88,29 +90,46 @@ export const Field: React.FC<Props> = ({
         }}
       >
         <StyledH1 design={design} type={'question'}>
+          <div
+            style={{
+              position: 'absolute',
+              height: '100%',
+              top: 0,
+              left: '-2.5em',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '14px',
+            }}
+          >
+            {field.id} <Arrow />
+          </div>
           {field.title}
         </StyledH1>
         {field.description && (
           <StyledMarkdown design={design} type={'question'} source={field.description} />
         )}
 
-        <FieldInput
-          onBlur={(e) => save(fromRef.current.getFieldsValue())}
-          design={design}
-          field={field}
-          urlValue={getUrlDefault()}
-        />
+        <div style={{ fontSize: '30px' }}>
+          <FieldInput
+            onBlur={(e) => save(fromRef.current.getFieldsValue())}
+            design={design}
+            field={field}
+            urlValue={getUrlDefault()}
+          />
+        </div>
       </div>
       <div
         style={{
           width: '700px',
           maxWidth: '100%',
           padding: 32,
+          paddingTop: 0,
           marginBottom: '100px',
           display: 'flex',
         }}
       >
-        {prevAction && (
+        {/* {prevAction && (
           <StyledButton
             background={design.colors.button}
             color={design.colors.buttonText}
@@ -119,17 +138,25 @@ export const Field: React.FC<Props> = ({
           >
             {'Previous'}
           </StyledButton>
-        )}
-        <div style={{ flex: 1 }} />
-        <StyledButton
+        )} */}
+        {/* <div style={{ flex: 1 }} /> */}
+        <Submit
           background={design.colors.button}
           color={design.colors.buttonText}
           highlight={design.colors.buttonActive}
           size={'large'}
           onClick={form.submit}
+          keys={nextAction ? 'Enter ↵' : 'Cmd ⌘ + Enter ↵'}
         >
-          {nextAction ? 'Next' : 'Submit'}
-        </StyledButton>
+          {nextAction ? (
+            <span style={{ fontWeight: 700 }}>
+              {' '}
+              Ok <Checked color={design.colors.buttonText} />{' '}
+            </span>
+          ) : (
+            'Submit'
+          )}
+        </Submit>
       </div>
     </Form>
   )

@@ -17,7 +17,7 @@ export const EmailType: React.FC<FieldTypeProps> = ({ field, design, urlValue })
         ]}
         initialValue={urlValue || field.value}
       >
-        <StyledInput design={design} allowClear size={'large'} />
+        <StyledInput placeholder="name@example.com" design={design} allowClear size={'large'} />
       </Form.Item>
     </div>
   )

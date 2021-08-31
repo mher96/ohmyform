@@ -18,6 +18,7 @@ const Field = styled(Input)`
   border-top: none;
   border-left: none;
   border-radius: 0;
+  font-size: 30px !important;
 
   :focus {
     outline: ${(props: Props) => props.design.colors.answer} auto 5px;
@@ -33,6 +34,7 @@ const Field = styled(Input)`
   }
 
   input {
+    font-size: 30px !important;
     background: none !important;
     color: ${(props: Props) => props.design.colors.answer};
 
@@ -47,5 +49,17 @@ const Field = styled(Input)`
 `
 
 export const StyledInput: React.FC<Props> = ({ children, ...props }) => {
-  return <Field {...props}>{children}</Field>
+  return (
+    <Field
+      style={{
+        fontSize: '30px !important',
+        paddingRight: 0,
+        paddingLeft: 0,
+      }}
+      placeholder="Type your answer here"
+      {...props}
+    >
+      {children}
+    </Field>
+  )
 }

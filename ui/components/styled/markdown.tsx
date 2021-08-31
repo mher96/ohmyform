@@ -14,6 +14,7 @@ const getColor = (props: Props) =>
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
 const Markdown = styled(ReactMarkdown)`
+  font-style: italic;
   color: ${getColor};
 
   h1,

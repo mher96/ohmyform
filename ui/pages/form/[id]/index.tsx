@@ -104,6 +104,7 @@ const Index: NextPage<Props> = () => {
                   nextAction={i !== array.length - 1}
                   prevAction={i !== 0}
                   save={async (values: { [key: string]: unknown }) => {
+                    console.log('values', values)
                     await submission.setField(field.id, values[field.id])
 
                     if (data.form.fields.length === i + 1) {

@@ -11,18 +11,21 @@ interface Props extends ButtonProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
 const Styled = styled(Button)`
+  margin-top: 0.5em !important;
+  padding: 4px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-weight: 700;
   font-size: 16px;
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 10%) 0px 3px 12px 0px;
-  min-height: 48px;
+  min-height: 40px;
+  max-width: 168px;
   cursor: pointer;
   background: ${(props: Props) => props.background};
   color: ${(props: Props) => props.color};
-  border-color: ${(props: Props) => darken(props.background, 10)};
+  border-color: ${(props: Props) => darken(props.color, 10)};
 
   :hover {
     color: ${(props: Props) => props.highlight};
