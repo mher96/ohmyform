@@ -11,6 +11,7 @@ interface Props extends ButtonProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
 const Styled = styled(Button)`
+  width: 100%;
   margin-top: 0.5em !important;
   padding: 4px;
   display: flex;

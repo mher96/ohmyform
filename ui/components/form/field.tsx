@@ -97,14 +97,15 @@ export const Field: React.FC<Props> = ({
               position: 'absolute',
               height: '100%',
               top: 0,
-              left: '-2.5em',
+              left: '-1.5em',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '14px',
             }}
           >
-            {item + 1} <Arrow />
+            {/* {item + 1} */}
+            <Arrow />
           </div>
           {field.title}
         </StyledH1>

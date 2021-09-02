@@ -69,7 +69,10 @@ export const FormPage: React.FC<Props> = ({ page, design, next, prev, className,
           color={design.colors.buttonText}
           highlight={design.colors.buttonActive}
           size={'large'}
-          onClick={next}
+          onClick={() => {
+            next()
+            if (props.type === 'end') window.location.reload()
+          }}
         >
           {page.buttonText || 'Continue'}
         </Submit>

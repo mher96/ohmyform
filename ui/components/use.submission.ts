@@ -1,4 +1,5 @@
 import { useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import {
   SUBMISSION_SET_FIELD_MUTATION,
@@ -18,6 +19,7 @@ interface Submission {
 }
 
 export const useSubmission = (formId: string): Submission => {
+  const router = useRouter()
   const [submission, setSubmission] = useState<{ id: string; token: string }>()
 
   const [start] = useMutation<SubmissionStartMutationData, SubmissionStartMutationVariables>(
@@ -28,28 +30,30 @@ export const useSubmission = (formId: string): Submission => {
   )
 
   useEffect(() => {
+    const preview = router.query.preview as string
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const token = [...Array(40)].map(() => Math.random().toString(36)[2]).join('')
 
-    start({
-      variables: {
-        form: formId,
-        submission: {
-          token,
-          device: {
-            name: /Mobi/i.test(window.navigator.userAgent) ? 'mobile' : 'desktop',
-            type: window.navigator.userAgent,
+    preview !== 'preview' &&
+      start({
+        variables: {
+          form: formId,
+          submission: {
+            token,
+            device: {
+              name: /Mobi/i.test(window.navigator.userAgent) ? 'mobile' : 'desktop',
+              type: window.navigator.userAgent,
+            },
           },
         },
-      },
-    })
-      .then(({ data }) => {
-        setSubmission({
-          id: data.submission.id,
-          token,
-        })
       })
-      .catch((e: Error) => console.error('failed to start submission', e))
+        .then(({ data }) => {
+          setSubmission({
+            id: data.submission.id,
+            token,
+          })
+        })
+        .catch((e: Error) => console.error('failed to start submission', e))
   }, [formId])
 
   const setField = useCallback(

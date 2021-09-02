@@ -22,7 +22,7 @@ export class SubmissionService {
     qb.leftJoinAndSelect('s.fields', 'fields')
 
     qb.where('s.form = :form', { form: form.id })
-      .orderBy('s.created', 'DESC')
+      .orderBy('s.lastModified', 'DESC')
 
     // TODO readd sort
 

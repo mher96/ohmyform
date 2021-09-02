@@ -1,10 +1,10 @@
 {
   "emailFieldRequired": "Please select an Email Field",
   "emailRequired": "Please provide an Email",
-  "invalidEmail": "Must be a valid email!",
-  "invalidNumber": "Must be a valid number!",
+  "invalidEmail": "Please enter a valid email address!",
+  "invalidNumber": "Please enter only numbers!",
   "invalidSlug": "Slug can only contain lowercase a-z, 0-9 and _",
-  "invalidUrl": "Must be a valid URL",
+  "invalidUrl": "Please enter a valid URL.",
   "languageRequired": "Please select a Language",
   "mandatoryFieldsMissing": "Mandatory fields missing",
   "passwordConfirmMismatch": "The two passwords that you entered do not match!",
@@ -16,5 +16,5 @@
   "titleRequired": "Please provide a title",
   "urlRequired": "Please provide a Url",
   "usernameRequired": "Please provide a Username",
-  "valueRequired": "Please provide a Value"
+  "valueRequired": "This field is required. Please enter your reply."
 }

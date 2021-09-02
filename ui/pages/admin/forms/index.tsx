@@ -155,17 +155,17 @@ const Index: NextPage = () => {
               </Tooltip>
             </Popconfirm>
 
-            <Tooltip title={row.isLive ? 'Link To Form' : 'Not Public accessible!'}>
-              <Button href={`/form/${row.id}`} target={'_blank'}>
+            <Tooltip title={'Form Preview'}>
+              <Button href={`/form/${row.id}?preview=preview`} target={'_blank'}>
                 <GlobalOutlined />
               </Button>
             </Tooltip>
-            <Tooltip title="Copy Link">
+            <Tooltip title={row.isLive ? 'Copy Link' : 'Not Public accessible!'}>
               <Button
                 onClick={() => {
                   return navigator.clipboard
                     .writeText(`${window.location.origin}/form/${row.id}`)
-                    .then(() => message.info('Link Copyed'))
+                    .then(() => message.info('Link Copied'))
                 }}
               >
                 <CopyOutlined />

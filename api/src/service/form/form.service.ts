@@ -35,7 +35,7 @@ export class FormService {
     }
 
     // TODO readd sort
-    qb.orderBy('f.created', 'DESC')
+    qb.orderBy('f.lastModified', 'DESC')
     qb.skip(start)
     qb.take(limit)
 

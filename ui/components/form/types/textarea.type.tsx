@@ -32,7 +32,7 @@ export const TextareaType: React.FC<FieldTypeProps> = ({ field, design, urlValue
           fontFamily: 'sans-serif',
         }}
       >
-        press <strong>Enter ↵ to make a line break</strong>
+        {/* press <strong>Enter ↵ to make a line break</strong> */}
       </div>
     </div>
   )

@@ -22,6 +22,7 @@ const Index: NextPage<Props> = () => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
   const id = router.query.id as string
+  const preview = router.query.preview as string | boolean
   const [swiper, setSwiper] = useState<OriginalSwiper.default>(null)
   const submission = useSubmission(id)
 
@@ -107,6 +108,8 @@ const Index: NextPage<Props> = () => {
                   nextAction={i !== array.length - 1}
                   prevAction={i !== 0}
                   save={async (values: { [key: string]: unknown }) => {
+                    if (preview === 'preview') return
+
                     console.log('values', values)
                     await submission.setField(field.id, values[field.id])
 
@@ -122,7 +125,7 @@ const Index: NextPage<Props> = () => {
                       if (!data.form.endPage.show) {
                         Modal.success({
                           content: t('form:submitted'),
-                          okText: t('from:restart'),
+                          okText: 'Ok',
                           onOk: () => {
                             window.location.reload()
                           },

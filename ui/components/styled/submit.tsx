@@ -52,7 +52,7 @@ export const Submit: React.FC<Props> = ({ keys = 'Enter', children, ...props }) 
           marginLeft: '.75em',
         }}
       >
-        press <strong>{keys}</strong>
+        {/* press <strong>{keys}</strong> */}
       </div>
     </div>
   )

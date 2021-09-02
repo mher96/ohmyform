@@ -57,7 +57,7 @@ export const RadioType: React.FC<FieldTypeProps> = ({ field, design, urlValue })
           .map((option) => option.value)
           .find((value) => value === initialValue)}
       >
-        <Radio.Group>
+        <Radio.Group style={{ width: '100%' }}>
           {field.options
             .filter((option) => option.key === null)
             .map((option, i) => (
