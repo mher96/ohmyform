@@ -98,7 +98,7 @@ export const ExportSubmissionAction: React.FC<Props> = (props) => {
 
       const link = document.createElement('a')
       link.href = window.URL.createObjectURL(new Blob([buffer], { type: 'application/xlsx' }))
-      link.download = 'submissions.xlsx'
+      link.download = `${form.data.form.title}-submissions.xlsx`
       link.click()
     } catch (e) {
       console.log('error', e)

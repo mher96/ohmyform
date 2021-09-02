@@ -17,6 +17,7 @@ import Arrow from '../arrow'
 import Checked from 'components/check'
 
 interface Props {
+  item: number
   field: FormPublicFieldFragment
   design: FormPublicDesignFragment
   nextAction?: boolean
@@ -28,6 +29,7 @@ interface Props {
 }
 
 export const Field: React.FC<Props> = ({
+  item,
   field,
   save,
   design,
@@ -102,7 +104,7 @@ export const Field: React.FC<Props> = ({
               fontSize: '14px',
             }}
           >
-            {field.id} <Arrow />
+            {item + 1} <Arrow />
           </div>
           {field.title}
         </StyledH1>

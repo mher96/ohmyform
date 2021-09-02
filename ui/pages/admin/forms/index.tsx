@@ -3,6 +3,7 @@ import {
   EditOutlined,
   GlobalOutlined,
   UnorderedListOutlined,
+  CopyOutlined,
 } from '@ant-design/icons/lib'
 import { Button, message, Popconfirm, Space, Table, Tag, Tooltip } from 'antd'
 import { PaginationProps } from 'antd/es/pagination'
@@ -14,7 +15,7 @@ import { TimeAgo } from 'components/time.ago'
 import { withAuth } from 'components/with.auth'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useWindowSize } from '../../../components/use.window.size'
 import { FormPagerFragment } from '../../../graphql/fragment/form.pager.fragment'
@@ -40,6 +41,7 @@ const Index: NextPage = () => {
       })
       setEntries(pager.entries)
     },
+    notifyOnNetworkStatusChange: true,
   })
   const [executeDelete] = useFormDeleteMutation()
 
@@ -119,7 +121,7 @@ const Index: NextPage = () => {
       responsive: ['md'],
     },
     {
-      title: t('form:row.menu'),
+      title: t(''),
       align: 'right',
       render(_, row) {
         return (
@@ -133,9 +135,11 @@ const Index: NextPage = () => {
             </Link>
 
             <Link href={'/admin/forms/[id]'} as={`/admin/forms/${row.id}`}>
-              <Button type={'primary'}>
-                <EditOutlined />
-              </Button>
+              <Tooltip title={'Edit Form'}>
+                <Button type={'primary'}>
+                  <EditOutlined />
+                </Button>
+              </Tooltip>
             </Link>
 
             <Popconfirm
@@ -144,14 +148,27 @@ const Index: NextPage = () => {
               okText={t('form:deleteNow')}
               okButtonProps={{ danger: true }}
             >
-              <Button danger>
-                <DeleteOutlined />
-              </Button>
+              <Tooltip title={'Delete Form'}>
+                <Button danger>
+                  <DeleteOutlined />
+                </Button>
+              </Tooltip>
             </Popconfirm>
 
-            <Tooltip title={row.isLive ? null : 'Not Public accessible!'}>
+            <Tooltip title={row.isLive ? 'Link To Form' : 'Not Public accessible!'}>
               <Button href={`/form/${row.id}`} target={'_blank'}>
                 <GlobalOutlined />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Copy Link">
+              <Button
+                onClick={() => {
+                  return navigator.clipboard
+                    .writeText(`${window.location.origin}/form/${row.id}`)
+                    .then(() => message.info('Link Copyed'))
+                }}
+              >
+                <CopyOutlined />
               </Button>
             </Tooltip>
           </Space>
@@ -159,6 +176,11 @@ const Index: NextPage = () => {
       },
     },
   ]
+
+  useEffect(() => {
+    void refetch()
+    return
+  }, [])
 
   return (
     <Structure

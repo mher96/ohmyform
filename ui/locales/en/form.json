@@ -66,11 +66,11 @@
     "toField": "Email Field",
     "toFieldInfo": "Field with Email for receipt"
   },
-  "restart": "Restart Form",
+  "restart": "OK",
   "row": {
     "admin": "Owner",
     "created": "Created",
-    "isLive": "Live",
+    "isLive": "Status",
     "language": "Language",
     "lastModified": "Last Modified",
     "title": "Title"

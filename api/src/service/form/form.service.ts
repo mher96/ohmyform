@@ -30,11 +30,12 @@ export class FormService {
     qb.leftJoinAndSelect('f.admin', 'a')
 
     if (user) {
-      qb.where('f.admin = :user', { user: user.id })
+      qb
+        .where('f.admin = :user', { user: user.id })
     }
 
     // TODO readd sort
-
+    qb.orderBy('f.created', 'DESC')
     qb.skip(start)
     qb.take(limit)
 

@@ -91,6 +91,8 @@ const Index: NextPage<Props> = () => {
             />
           ) : undefined,
           ...data.form.fields
+            .map((field) => field)
+            .sort((a, b) => Number(a.id) - Number(b.id))
             .map((field, i, array) => {
               if (field.type === 'hidden') {
                 return null
@@ -98,6 +100,7 @@ const Index: NextPage<Props> = () => {
 
               return (
                 <Field
+                  item={i}
                   key={field.id}
                   field={field}
                   design={design}

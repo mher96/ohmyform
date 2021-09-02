@@ -40,6 +40,7 @@ const Submissions: NextPage = () => {
       setForm(form)
       setEntries(pager.entries)
     },
+    notifyOnNetworkStatusChange: true,
   })
 
   const columns: ColumnsType<SubmissionFragment> = [

@@ -90,7 +90,6 @@ export const FieldCard: React.FC<Props> = (props) => {
           </Popconfirm>
         </div>
       }
-      actions={[<DeleteOutlined key={'delete'} onClick={() => remove(index)} />]}
     >
       <Form.Item name={[field.name as string, 'type']} noStyle>
         <Input type={'hidden'} />
