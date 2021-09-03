@@ -45,6 +45,24 @@ const Index: NextPage<Props> = () => {
     }
   }, [data])
 
+  useEffect(() => {
+    if (!data) return
+    const promises = []
+    const hiddenFields = [...data.form.fields].filter((field) => field.type === 'hidden')
+    const urlSearchParams = new URLSearchParams(location.search)
+
+    hiddenFields.forEach((field) => {
+      const slug = field.slug
+      if (urlSearchParams.has(slug)) {
+        promises.push(submission.setField(field.id, urlSearchParams.get(slug)))
+      }
+    })
+
+    void Promise.all(promises)
+      .then()
+      .catch((e) => console.log('error in start'))
+  }, [data])
+
   if (loading) {
     return <LoadingPage message={t('form:build')} />
   }
@@ -108,6 +126,7 @@ const Index: NextPage<Props> = () => {
                   nextAction={i !== array.length - 1}
                   prevAction={i !== 0}
                   save={async (values: { [key: string]: unknown }) => {
+                    console.log()
                     if (preview === 'preview') return
 
                     console.log('values', values)
