@@ -8,6 +8,7 @@ import { SubmissionEntity } from '../../entity/submission.entity'
 import { SubmissionFieldEntity } from '../../entity/submission.field.entity'
 import { SubmissionHookService } from './submission.hook.service'
 import { SubmissionNotificationService } from './submission.notification.service'
+import { pushTaskRef } from './queue.service'
 
 @Injectable()
 export class SubmissionSetFieldService {
@@ -24,6 +25,7 @@ export class SubmissionSetFieldService {
 
   async saveField(submission: SubmissionEntity, input: SubmissionSetFieldInput): Promise<void> {
     let field = submission.fields.find(field => field.field.id.toString() === input.field)
+    console.log('start saveField')
 
     if (field) {
       field.fieldValue = JSON.parse(input.data)
@@ -47,11 +49,13 @@ export class SubmissionSetFieldService {
     submission.timeElapsed = dayjs().diff(dayjs(submission.created), 'second')
 
     await this.submissionRepository.save(submission)
+    const task = () => this.webHook.process(submission).catch(e => {
+      this.logger.error(`failed to send webhooks: ${e.message}`)
+    })
+
+    pushTaskRef(submission.id, task)
 
     if (submission.percentageComplete === 1) {
-      this.webHook.process(submission).catch(e => {
-        this.logger.error(`failed to send webhooks: ${e.message}`)
-      })
       this.notifications.process(submission).catch(e => {
         this.logger.error(`failed to send notifications: ${e.message}`)
       })
