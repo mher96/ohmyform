@@ -8,5 +8,5 @@ export interface FieldTypeProps {
   field: FormPublicFieldFragment
   design: FormPublicDesignFragment
   urlValue?: string
-  onBlur?: (e: FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: FocusEvent<HTMLInputElement> | FocusEvent<HTMLElement>) => void
 }

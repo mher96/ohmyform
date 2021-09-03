@@ -6,7 +6,13 @@ import { useTranslation } from 'react-i18next'
 import { StyledDateInput } from '../../styled/date.input'
 import { FieldTypeProps } from './type.props'
 
-export const DateType: React.FC<FieldTypeProps> = ({ field, design, urlValue }) => {
+export const DateType: React.FC<FieldTypeProps> = ({
+  field,
+  design,
+  urlValue,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onBlur = () => {},
+}) => {
   const [min, setMin] = useState<Dayjs>()
   const [max, setMax] = useState<Dayjs>()
   const { t } = useTranslation()
@@ -44,6 +50,7 @@ export const DateType: React.FC<FieldTypeProps> = ({ field, design, urlValue }) 
         <StyledDateInput
           size={'large'}
           design={design}
+          onBlur={onBlur}
           disabledDate={(d: Moment) => {
             if (min && min.isAfter(d.toDate())) {
               return true

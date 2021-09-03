@@ -4,7 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { StyledNumberInput } from '../../styled/number.input'
 import { FieldTypeProps } from './type.props'
 
-export const NumberType: React.FC<FieldTypeProps> = ({ field, design, urlValue }) => {
+export const NumberType: React.FC<FieldTypeProps> = ({
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onBlur = () => {},
+  field,
+  design,
+  urlValue,
+}) => {
   const { t } = useTranslation()
 
   let initialValue: number = undefined
@@ -27,7 +33,7 @@ export const NumberType: React.FC<FieldTypeProps> = ({ field, design, urlValue }
         ]}
         initialValue={initialValue}
       >
-        <StyledNumberInput design={design} size={'large'} />
+        <StyledNumberInput onBlur={onBlur} design={design} size={'large'} />
       </Form.Item>
     </div>
   )

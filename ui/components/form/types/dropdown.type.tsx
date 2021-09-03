@@ -4,7 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { StyledSelect } from '../../styled/select'
 import { FieldTypeProps } from './type.props'
 
-export const DropdownType: React.FC<FieldTypeProps> = ({ field, design, urlValue }) => {
+export const DropdownType: React.FC<FieldTypeProps> = ({
+  field,
+  design,
+  urlValue,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onBlur = () => {},
+}) => {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
 
@@ -18,7 +24,10 @@ export const DropdownType: React.FC<FieldTypeProps> = ({ field, design, urlValue
         <StyledSelect
           design={design}
           open={open}
-          onBlur={() => setOpen(false)}
+          onBlur={(e) => {
+            setOpen(false)
+            onBlur(e)
+          }}
           onFocus={() => setOpen(true)}
           onSelect={() => setOpen(false)}
         >

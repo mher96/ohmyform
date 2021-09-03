@@ -1,4 +1,4 @@
-import { Checkbox, Form, Radio } from 'antd'
+import { Checkbox, Form, Input, Radio } from 'antd'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyledButton } from '../../styled/checkbox'
@@ -56,6 +56,9 @@ export const RadioType: React.FC<FieldTypeProps> = ({ field, design, urlValue })
         initialValue={field.options
           .map((option) => option.value)
           .find((value) => value === initialValue)}
+        // valuePropName={'checked'}
+        // getValueFromEvent={(checked: boolean) => (checked ? '1' : '0')}
+        // getValueProps={(e: string) => ({ checked: !!e })}
       >
         <Radio.Group style={{ width: '100%' }}>
           {field.options
@@ -63,7 +66,6 @@ export const RadioType: React.FC<FieldTypeProps> = ({ field, design, urlValue })
             .map((option, i) => (
               <StyledButton
                 key={i}
-                onClick={() => toggleChecked(option.value)}
                 background={design.colors.button}
                 color={design.colors.buttonText}
                 highlight={design.colors.buttonActive}
@@ -75,9 +77,9 @@ export const RadioType: React.FC<FieldTypeProps> = ({ field, design, urlValue })
                 >
                   <span>{option.title}</span>
                 </Content>
-                <Checkbox
-                  value={option.title}
-                  checked={checked === option.value}
+                <Radio
+                  value={option.value}
+                  onClick={() => toggleChecked(option.value)}
                   style={{
                     position: 'absolute',
                     left: 0,

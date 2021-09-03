@@ -5,9 +5,14 @@ import { StyledButton } from '../../styled/checkbox'
 import { FieldTypeProps } from './type.props'
 import { Content } from '../../checkbocContent'
 
-export const YesNoType: React.FC<FieldTypeProps> = ({ field, urlValue, design }) => {
+export const YesNoType: React.FC<FieldTypeProps> = ({
+  field,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  urlValue,
+  design,
+}) => {
   const { t } = useTranslation()
-  const [checked, toggleChecked] = useState<boolean>(false)
+  const [checked, toggleChecked] = useState<number>(0)
 
   let initialValue = !!field.value
 
@@ -22,7 +27,7 @@ export const YesNoType: React.FC<FieldTypeProps> = ({ field, urlValue, design })
         rules={[{ required: field.required, message: t('validation:valueRequired') }]}
         initialValue={initialValue}
         valuePropName={'checked'}
-        getValueFromEvent={(checked: boolean) => (checked ? '1' : '')}
+        getValueFromEvent={(checked: boolean) => (checked ? '1' : '0')}
         getValueProps={(e: string) => ({ checked: !!e })}
       >
         <div
@@ -32,17 +37,17 @@ export const YesNoType: React.FC<FieldTypeProps> = ({ field, urlValue, design })
           }}
         >
           <StyledButton
-            onClick={() => toggleChecked(true)}
+            onClick={() => toggleChecked(1)}
             background={design.colors.button}
             color={design.colors.buttonText}
             highlight={design.colors.buttonActive}
           >
-            <Content id="A" checked={checked} buttonText={design.colors.buttonText}>
+            <Content id="A" checked={checked === 1} buttonText={design.colors.buttonText}>
               <span>Yes</span>
             </Content>
             <Checkbox
               value={true}
-              checked={checked}
+              checked={checked === 1}
               style={{
                 position: 'absolute',
                 left: 0,
@@ -54,7 +59,7 @@ export const YesNoType: React.FC<FieldTypeProps> = ({ field, urlValue, design })
             />
           </StyledButton>
           <StyledButton
-            onClick={() => toggleChecked(false)}
+            onClick={() => toggleChecked(0)}
             background={design.colors.button}
             color={design.colors.buttonText}
             highlight={design.colors.buttonActive}

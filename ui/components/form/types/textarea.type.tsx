@@ -4,7 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { StyledTextareaInput } from '../../styled/textarea.input'
 import { FieldTypeProps } from './type.props'
 
-export const TextareaType: React.FC<FieldTypeProps> = ({ field, design, urlValue }) => {
+export const TextareaType: React.FC<FieldTypeProps> = ({
+  onBlur = () => {},
+  field,
+  design,
+  urlValue,
+}) => {
   const { t } = useTranslation()
 
   return (
@@ -17,6 +22,7 @@ export const TextareaType: React.FC<FieldTypeProps> = ({ field, design, urlValue
         <StyledTextareaInput
           placeholder="Type your answer here"
           design={design}
+          onBlur={onBlur}
           allowClear
           autoSize
         />

@@ -4,7 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { StyledInput } from '../../styled/input'
 import { FieldTypeProps } from './type.props'
 
-export const LinkType: React.FC<FieldTypeProps> = ({ field, design, urlValue }) => {
+export const LinkType: React.FC<FieldTypeProps> = ({
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onBlur = () => {},
+  field,
+  design,
+  urlValue,
+}) => {
   const { t } = useTranslation()
 
   return (
@@ -17,7 +23,7 @@ export const LinkType: React.FC<FieldTypeProps> = ({ field, design, urlValue }) 
         ]}
         initialValue={urlValue || field.value}
       >
-        <StyledInput design={design} allowClear size={'large'} />
+        <StyledInput onBlur={onBlur} design={design} allowClear size={'large'} />
       </Form.Item>
     </div>
   )
