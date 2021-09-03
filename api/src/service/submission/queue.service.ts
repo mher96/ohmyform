@@ -1,6 +1,6 @@
 const queue = { }
   
-const getTimeout = (task) => setTimeout(() => task(), 5000)
+const getTimeout = (task) => setTimeout(() => task(), 20000)
 
 export const pushTaskRef = (submissionId, task) => {
     if(queue[submissionId]) {
