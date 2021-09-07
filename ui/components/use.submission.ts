@@ -59,6 +59,8 @@ export const useSubmission = (formId: string): Submission => {
   const setField = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (fieldId: string, data: any) => {
+      if (!submission || !submission.id)
+        return console.log('wait for a submission initialization response')
       console.log('just save', fieldId, data)
       await save({
         variables: {

@@ -61,7 +61,7 @@ const Index: NextPage<Props> = () => {
     void Promise.all(promises)
       .then()
       .catch((e) => console.log('error in start', e))
-  }, [data])
+  }, [data, submission])
 
   if (loading) {
     return <LoadingPage message={t('form:build')} />
