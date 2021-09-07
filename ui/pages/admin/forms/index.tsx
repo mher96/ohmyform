@@ -164,14 +164,11 @@ const Index: NextPage = () => {
             <Tooltip title={row.isLive ? 'Copy Link' : 'Not Public accessible!'}>
               <Button
                 onClick={() => {
-                  copy('Text', {
+                  copy(`${window.location.origin}/form/${row.id}`, {
                     debug: true,
                     message: 'Press #{key} to copy',
                   })
                   void message.info('Link Copied')
-                  // return navigator.clipboard
-                  //   .writeText(`${window.location.origin}/form/${row.id}`)
-                  //   .then(() => message.info('Link Copied'))
                 }}
               >
                 <CopyOutlined />
