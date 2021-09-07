@@ -6,7 +6,7 @@ const version = p.version;
 module.exports = withImages({
   poweredByHeader: false,
   publicRuntimeConfig: {
-    endpoint: process.env.ENDPOINT || 'http://localhost:3000/graphql',
+    endpoint: 'http://ec2-54-160-135-102.compute-1.amazonaws.com:3000/graphql',
     spa: !!process.env.SPA || false,
     mainBackground: process.env.MAIN_BACKGROUND || '#8FA2A6'
   },
