@@ -50,17 +50,17 @@ const Index: NextPage<Props> = () => {
     const promises = []
     const hiddenFields = [...data.form.fields].filter((field) => field.type === 'hidden')
     const urlSearchParams = new URLSearchParams(location.search)
-
     hiddenFields.forEach((field) => {
+      console.log(field.id, 'field.id')
       const slug = field.slug
-      if (urlSearchParams.has(slug)) {
-        promises.push(submission.setField(field.id, urlSearchParams.get(slug)))
-      }
+      urlSearchParams.has(slug)
+        ? promises.push(submission.setField(field.id, urlSearchParams.get(slug)))
+        : promises.push(submission.setField(field.id, field.value))
     })
 
     void Promise.all(promises)
       .then()
-      .catch((e) => console.log('error in start'))
+      .catch((e) => console.log('error in start', e))
   }, [data])
 
   if (loading) {
@@ -126,10 +126,8 @@ const Index: NextPage<Props> = () => {
                   nextAction={i !== array.length - 1}
                   prevAction={i !== 0}
                   save={async (values: { [key: string]: unknown }) => {
-                    console.log()
                     if (preview === 'preview') return
 
-                    console.log('values', values)
                     await submission.setField(field.id, values[field.id])
 
                     if (data.form.fields.length === i + 1) {
