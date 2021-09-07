@@ -18,6 +18,7 @@
     "@lifeomic/axios-fetch": "^2.0.0",
     "antd": "^4.15.3",
     "axios": "^0.21.1",
+    "copy-to-clipboard": "^3.3.1",
     "cross-env": "^7.0.3",
     "dayjs": "^1.10.4",
     "exceljs": "^4.2.1",

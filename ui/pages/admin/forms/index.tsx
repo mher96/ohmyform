@@ -21,6 +21,7 @@ import { useWindowSize } from '../../../components/use.window.size'
 import { FormPagerFragment } from '../../../graphql/fragment/form.pager.fragment'
 import { useFormDeleteMutation } from '../../../graphql/mutation/form.delete.mutation'
 import { useFormPagerQuery } from '../../../graphql/query/form.pager.query'
+import copy from 'copy-to-clipboard'
 
 const Index: NextPage = () => {
   const { t } = useTranslation()
@@ -163,9 +164,14 @@ const Index: NextPage = () => {
             <Tooltip title={row.isLive ? 'Copy Link' : 'Not Public accessible!'}>
               <Button
                 onClick={() => {
-                  return navigator.clipboard
-                    .writeText(`${window.location.origin}/form/${row.id}`)
-                    .then(() => message.info('Link Copied'))
+                  copy('Text', {
+                    debug: true,
+                    message: 'Press #{key} to copy',
+                  })
+                  void message.info('Link Copied')
+                  // return navigator.clipboard
+                  //   .writeText(`${window.location.origin}/form/${row.id}`)
+                  //   .then(() => message.info('Link Copied'))
                 }}
               >
                 <CopyOutlined />
@@ -182,16 +188,6 @@ const Index: NextPage = () => {
     return
   }, [])
 
-  useEffect(() => {
-    const queryOpts = { name: 'clipboard-write' as PermissionName, allowWithoutGesture: true }
-    void navigator.permissions.query(queryOpts).then((permissionStatus) => {
-      console.log(permissionStatus.state)
-
-      permissionStatus.onchange = () => {
-        console.log(permissionStatus.state)
-      }
-    })
-  }, [])
 
   return (
     <Structure
