@@ -182,6 +182,17 @@ const Index: NextPage = () => {
     return
   }, [])
 
+  useEffect(() => {
+    const queryOpts = { name: 'clipboard-write' as PermissionName, allowWithoutGesture: true }
+    void navigator.permissions.query(queryOpts).then((permissionStatus) => {
+      console.log(permissionStatus.state)
+
+      permissionStatus.onchange = () => {
+        console.log(permissionStatus.state)
+      }
+    })
+  }, [])
+
   return (
     <Structure
       title={t('admin:forms')}
