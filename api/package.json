@@ -67,7 +67,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.7",
     "sqlite3": "^5.0.2",
-    "typeorm": "^0.2.32"
+    "typeorm": "^0.2.32",
+    "yarn": "^1.22.11"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",
