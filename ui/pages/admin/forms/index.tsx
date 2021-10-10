@@ -185,7 +185,6 @@ const Index: NextPage = () => {
     return
   }, [])
 
-
   return (
     <Structure
       title={t('admin:forms')}
