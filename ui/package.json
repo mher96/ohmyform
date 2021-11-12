@@ -43,7 +43,8 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.32.12",
     "styled-components": "^5.2.3",
-    "swiper": "^6.5.8"
+    "swiper": "^6.5.8",
+    "yarn": "^1.22.11"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
